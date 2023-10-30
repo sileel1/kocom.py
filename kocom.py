@@ -23,7 +23,7 @@ import configparser
 
 
 # define -------------------------------
-SW_VERSION = '2023.10.001'
+SW_VERSION = '2023.10.004'
 CONFIG_FILE = 'kocom.conf'
 BUF_SIZE = 100
 
@@ -588,15 +588,12 @@ def packet_processor(p):
             logtxt='[MQTT publish|gas] data[{}]'.format(state)
             mqttc.publish("kocom/livingroom/gas/state", json.dumps(state))
     elif p['type'] == 'send' and p['dest'] == 'elevator':
-        # floor = int(p['value'][2:4],16) -- 삭제 2023.10.22 by sichan
+        floor = int(p['value'][2:4],16)
         rs485_floor = int(config.get('Elevator','rs485_floor', fallback=0))
         if rs485_floor != 0 :
-            if p['value'] =='0300000000000000' : # -- 추가 2023.10.22 by sichan
-            # 도착 패킷 수신 시 off 상태로 변경 [ AA 55 30 BC 00 01 00 44 00 01 03 00 00 00 00 00 00 00 35 0D 0D ] -- 추가 2023.10.22 by sichan
-            # state = {'floor': floor} -- 삭제 2023.10.22 by sichan
-                state['state'] = 'off' # -- 추가 2023.10.22 by sichan
-            # if rs485_floor == floor: -- 삭제 2023.10.22 by sichan
-                # state['state'] = 'off' -- 삭제 2023.10.22 by sichan
+            state = {'floor': floor}
+            if rs485_floor == floor: 
+                state['state'] = 'off' 
         else:
             state = {'state': 'off'}
         logtxt='[MQTT publish|elevator] data[{}]'.format(state)
