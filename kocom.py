@@ -591,10 +591,10 @@ def packet_processor(p):
         # floor = int(p['value'][2:4],16) -- 삭제 2023.10.22 by sichan
         rs485_floor = int(config.get('Elevator','rs485_floor', fallback=0))
         if rs485_floor != 0 :
-	    if p['value'] =='0300000000000000' : # -- 추가 2023.10.22 by sichan
+            if p['value'] =='0300000000000000' : # -- 추가 2023.10.22 by sichan
             # 도착 패킷 수신 시 off 상태로 변경 [ AA 55 30 BC 00 01 00 44 00 01 03 00 00 00 00 00 00 00 35 0D 0D ] -- 추가 2023.10.22 by sichan
             # state = {'floor': floor} -- 삭제 2023.10.22 by sichan
-	    state['state'] = 'off' # -- 추가 2023.10.22 by sichan
+                state['state'] = 'off' # -- 추가 2023.10.22 by sichan
             # if rs485_floor == floor: -- 삭제 2023.10.22 by sichan
                 # state['state'] = 'off' -- 삭제 2023.10.22 by sichan
         else:
