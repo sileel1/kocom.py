@@ -1,6 +1,6 @@
 ---
 name: Kocom Wallpad with RS485 for 청량리 롯데캐슬 Sky-L65
-version: 2024.10.008
+version: 2024.10.009
 slug: kocom_py
 description: Kocom Wallpad for Home Assistant
 arch:
