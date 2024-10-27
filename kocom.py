@@ -9,6 +9,7 @@
  apt-get install mosquitto
  python3 -m pip install pyserial
  python3 -m pip install paho-mqtt
+ python3 -m pip install typing_extensions
 '''
 import os
 import time
@@ -23,7 +24,7 @@ import configparser
 
 
 # define -------------------------------
-SW_VERSION = '2024.10.008'
+SW_VERSION = '2024.10.009'
 CONFIG_FILE = 'kocom.conf'
 BUF_SIZE = 100
 
